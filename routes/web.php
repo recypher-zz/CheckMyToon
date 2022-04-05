@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::post('/player', [PlayerController::class, 'getPlayerInfo'])->name('getPlayerInfo');
 
-Route::get('/news', [NewsController::class, 'getNews']);
+Route::get('/news', [NewsController::class, 'getNews'])->name('getNews');
 
 Auth::routes();
 

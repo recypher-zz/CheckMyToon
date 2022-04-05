@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class NewsController extends Controller
 {
     public function getNews() {
-        $articles = News::paginate(8);
+        $articles = News::orderBy('created_at', 'desc')->paginate(8);
 
         return view('/news', [
             'articles' => $articles,
