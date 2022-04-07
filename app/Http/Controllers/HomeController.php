@@ -18,7 +18,7 @@ class HomeController extends Controller
 
         return view('/homepage', [
             'xivServers'    => $xivServers,
-            'quotes'  => $quotes,
+            'quotes'        => $quotes,
         ]);
     }
 }

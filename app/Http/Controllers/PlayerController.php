@@ -14,6 +14,9 @@ class PlayerController extends Controller
         $xivRequest = Http::get("https://xivapi.com/character/search?name=" . $player_name . "&server=" . $server);
         $player_data = json_decode($xivRequest->body());
 
+        $xivServerList = Http::get("https://xivapi.com/servers/dc");
+        $xivServers = json_decode($xivServerList);
+
         $player = $player_data->Results[0];
 
         $profileRequest = Http::get("https://xivapi.com/character/" . $player->ID);
@@ -21,8 +24,9 @@ class PlayerController extends Controller
 
 
         return view('/player', [
-            'player' => $player,
-            'profile' => $profile,
+            'xivServers'=> $xivServers,
+            'player'    => $player,
+            'profile'   => $profile,
         ]);
     }
 }
