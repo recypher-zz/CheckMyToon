@@ -11313,3 +11313,7 @@ textarea.form-control-lg {
 .class {
   width: 25px;
 }
+
+.article {
+  opacity: 0;
+}

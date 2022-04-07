@@ -1,3 +1,9 @@
-$(".article").each(function (){
-    $(this).hide().fadeIn(1000);
-});
+
+function showArticles () {
+
+    $('.article').each(function (index) {
+        $(this).delay(index*400).animate({ opacity: 1 })
+    })
+}
+
+showArticles();

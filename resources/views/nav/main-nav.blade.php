@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand homeLink" id="navTitle" href="{{ url('/') }}"><h4>Royal Roses</h4></a>
+        <a class="navbar-brand homeLink" id="navTitle" href="{{ url('/') }}"><h4>Check My Toon</h4></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-nav">
             <span class="navbar-toggler-icon"></span>
         </button>
