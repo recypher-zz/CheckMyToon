@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::post('/player', [PlayerController::class, 'getPlayerInfo'])->name('getPlayerInfo');
+Route::post('/player', [PlayerController::class, 'loadPlayerInfo'])->name('loadPlayerInfo');
+Route::get('/player/{player_name}/{server}', [PlayerController::class, 'getPlayerInfo']);
 
 Route::get('/news', [NewsController::class, 'getNews'])->name('getNews');
 

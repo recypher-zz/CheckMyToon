@@ -27,6 +27,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6 col-lg">
+                        <div class="card rounded bg-dark">
+                            <h2 id="cardHeader" class="text-light text-ce"><u class="blue-underline">Toon Info</u></h2>
+                            <div class="row row-cols-auto d-flex justify-content-center">
+                                @foreach ($charProfile as $key => $val)
+                                    {{ $key . "<br>" . $val }}
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

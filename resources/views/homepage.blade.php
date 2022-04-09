@@ -15,9 +15,9 @@
             </div>
             <div class="row">
                 <div class="col d-flex my-4 justify-content-center">
-                    <form class="d-flex" method="post" action="{{ route('getPlayerInfo') }}">
+                    <form class="d-flex" method="POST" action="{{ route('loadPlayerInfo') }}">
                         @csrf
-                        <input class="form-control me-2" type="text" name="player_name" placeholder="Search Players">
+                        <input class="form-control me-2" required type="text" name="player_name" placeholder="Search Players">
                         <select class="me-2 rounded" name="server" id="server">
                             <option value="Select a server...">Select a server...</option>
                             @foreach ($xivServers as $key => $vals)

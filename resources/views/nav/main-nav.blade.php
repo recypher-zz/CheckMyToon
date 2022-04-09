@@ -16,7 +16,7 @@
                     <a class="nav-link" href="{{ url('/news') }}">FF News</a>
                 </li>
             </ul>
-            <form class="d-flex" method="post" action="{{ route('getPlayerInfo') }}">
+            <form class="d-flex" method="POST" action="{{ route('loadPlayerInfo') }}">
                 @csrf
                 <input class="form-control me-2" type="text" name="player_name" placeholder="Search Players">
                 <select class="me-2 rounded" name="server" id="server">
