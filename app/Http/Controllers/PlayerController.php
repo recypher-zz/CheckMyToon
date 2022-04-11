@@ -25,31 +25,41 @@ class PlayerController extends Controller
         // Request basic player data (playerID) from XIVAPI
         $xivRequest = Http::get("https://xivapi.com/character/search?name=" . $player_name . "&server=" . $server);
         $player_data = json_decode($xivRequest->body());
-        $player = $player_data->Results[0];
+        
+        if(isset($player_data->Error) == true) {
+            $apiError = $player_data->Message;
+            return view('/apierror', [
+                'apiError' => $apiError
+            ]);
+        }else{
+            $player = $player_data->Results[0];
+        
+        
+            // Request Server data from XIVAPI to form list of current active servers
+            $xivServerList = Http::get("https://xivapi.com/servers/dc");
+            $xivServers = json_decode($xivServerList);
 
-        // Request Server data from XIVAPI to form list of current active servers
-        $xivServerList = Http::get("https://xivapi.com/servers/dc");
-        $xivServers = json_decode($xivServerList);
+            // Request specific data form XIV API like avatar data
+            $profileRequest = Http::get("https://xivapi.com/character/" . $player->ID);
+            $profile = json_decode($profileRequest->body());
 
-        // Request specific data form XIV API like avatar data
-        $profileRequest = Http::get("https://xivapi.com/character/" . $player->ID);
-        $profile = json_decode($profileRequest->body());
+            // Crawl the lodestone page to get the specifics
+            $client = new Client();
+            $url = "https://na.finalfantasyxiv.com/lodestone/character/". $player->ID . "/";
 
-        // Crawl the lodestone page to get the specifics
-        $client = new Client();
-        $url = "https://na.finalfantasyxiv.com/lodestone/character/". $player->ID . "/";
+            $crawler = $client->request('GET', $url);
 
-        $crawler = $client->request('GET', $url);
-        $charProfile = [];
-        $charProfile = $crawler->filter('.character-block')->each(function($node){
-            return $node->text() . "\n";
-        });
+            $charProfile = [];
+            
 
-        return view('/player', [
-            'charProfile'   => $charProfile,
-            'xivServers'    => $xivServers,
-            'player'        => $player,
-            'profile'       => $profile,
-        ]);
+            return view('/player', [
+                'charProfile'   => $charProfile,
+                'xivServers'    => $xivServers,
+                'player'        => $player,
+                'profile'       => $profile,
+            ]);
+        }
+
+        
     }
 }
