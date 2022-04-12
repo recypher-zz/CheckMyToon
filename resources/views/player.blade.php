@@ -39,12 +39,23 @@
                     </div>
                     <div class="col-md-6 col-lg-12 my-3">
                         <div class="card rounded bg-dark border border-light">
+                            <div class="row d-flex justify-content-center">
+                                <h2 id="cardHeader" class="text-light text-center"><u class="blue-underline">Current Class</u></h2>
+                            </div>
                             <div class="row d-flex">
                                 <div class="col-2">
-                                    <img style="width: 75px;" src="{{ url('/public/imgs/' . strtolower(str_replace(' ', '', $profile->Character->ActiveClassJob->UnlockedState->Name)) . '.png') }}">
+                                    <img class="mb-1" style="width: 75px;" src="{{ url('/public/imgs/' . strtolower(str_replace(' ', '', $profile->Character->ActiveClassJob->UnlockedState->Name)) . '.png') }}">
                                 </div>
-                                <div class="col-10">
-                                    <h2>Red Mage</h2>
+                                <div class="col-4 pt-2">
+                                    <div class="row">
+                                        <h4 id="titleHead" class="text-light">{{ $profile->Character->ActiveClassJob->UnlockedState->Name }}</h4>
+                                    </div>
+                                    <div class="row">
+                                        <h5 id="titleHead" class="text-light">Level: {{ $profile->Character->ActiveClassJob->Level }}</h5>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <h5 id="titleHead" class="text-light">HP: {{ $attributesData->Character->Hp }}</h5>
                                 </div>
                             </div>
                         </div>

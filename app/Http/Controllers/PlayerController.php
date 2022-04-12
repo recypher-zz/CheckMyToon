@@ -33,7 +33,10 @@ class PlayerController extends Controller
             ]);
         }else{
             $player = $player_data->Results[0];
-        
+
+            // Request data from CheckMyToonAPI
+            $attributes = Http::get("http://niemergk.com:3000/character/" . $player->ID);
+            $attributesData = json_decode($attributes);
         
             // Request Server data from XIVAPI to form list of current active servers
             $xivServerList = Http::get("https://xivapi.com/servers/dc");
@@ -42,18 +45,10 @@ class PlayerController extends Controller
             // Request specific data form XIV API like avatar data
             $profileRequest = Http::get("https://xivapi.com/character/" . $player->ID);
             $profile = json_decode($profileRequest->body());
-
-            // Crawl the lodestone page to get the specifics
-            $client = new Client();
-            $url = "https://na.finalfantasyxiv.com/lodestone/character/". $player->ID . "/";
-
-            $crawler = $client->request('GET', $url);
-
-            $charProfile = [];
             
 
             return view('/player', [
-                'charProfile'   => $charProfile,
+                'attributesData' => $attributesData,
                 'xivServers'    => $xivServers,
                 'player'        => $player,
                 'profile'       => $profile,
