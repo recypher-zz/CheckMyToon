@@ -26,12 +26,30 @@
                                 @endforeach
                             </div>
                         </div>
+                        <div class="col-md-6 col-lg-12 my-3">
+                            <div class="card rounded bg-dark border border-light">
+                                <h2 id="cardHeader" class="text-light text-center"><u class="blue-underline">Profile</u></h2>
+                                <div class="row d-flex mx-2">
+                                    <h5 id="titleHead" class="text-light">Nameday: {{ $attributesData->Character->Nameday }}</h5>
+                                    <br>
+                                    <h5 id="titleHead" class="text-light">Race: {{ $attributesData->Character->Race }}</h5>
+                                    <br>
+                                    <h5 id="titleHead" class="text-light">Tribe: {{ $attributesData->Character->Tribe }}</h5>
+                                    <br>
+                                    <h5 id="titleHead" class="text-light">Gender: {{ $attributesData->Character->Gender }}</h5>
+                                    <br>
+                                    <h5 id="titleHead" class="text-light">Title: {{ $attributesData->Character->Title }}</h5>
+                                    <br>
+                                    <h5 id="titleHead" class="text-light">Town: {{ $attributesData->Character->Town->Name }}</h5>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4 my-3">
                     <div class="col-md-6 col-lg-12">
                         <div class="card rounded bg-dark border border-light">
-                            <h2 id="cardHeader" class="text-light text-center"><u class="blue-underline">Character</u></h2>
+                            <h2 id="cardHeader" class="text-light text-center"><u class="blue-underline">{{ $attributesData->Character->Name }}</u></h2>
                             <div class="row px-4 mb-3 d-flex justify-content-center">
                                 <img src="{{ $profile->Character->Portrait }}" alt="">
                             </div>
@@ -40,7 +58,7 @@
                     <div class="col-md-6 col-lg-12 my-3">
                         <div class="card rounded bg-dark border border-light">
                             <div class="row d-flex justify-content-center">
-                                <h2 id="cardHeader" class="text-light text-center"><u class="blue-underline">Current Class</u></h2>
+                                <h2 id="cardHeader" class="text-light text-center"><u class="blue-underline">Current Class Stats</u></h2>
                             </div>
                             <div class="row d-flex">
                                 <div class="col-2">
@@ -48,14 +66,15 @@
                                 </div>
                                 <div class="col-4 pt-2">
                                     <div class="row">
-                                        <h4 id="titleHead" class="text-light">{{ $profile->Character->ActiveClassJob->UnlockedState->Name }}</h4>
+                                        <h3 id="titleHead" class="text-light">{{ $profile->Character->ActiveClassJob->UnlockedState->Name }}</h3>
                                     </div>
                                     <div class="row">
-                                        <h5 id="titleHead" class="text-light">Level: {{ $profile->Character->ActiveClassJob->Level }}</h5>
+                                        <h3 id="titleHead" class="text-light">Level: {{ $profile->Character->ActiveClassJob->Level }}</h3>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <h5 id="titleHead" class="text-light">HP: {{ $attributesData->Character->Hp }}</h5>
+                                <div class="col-6 pt-2">
+                                    <h3 id="titleHead" class="text-light">HP: {{ $attributesData->Character->Hp }}</h3>
+                                    <h3 id="titleHead" class="text-light">MP: {{ $attributesData->Character->MpGpCp }}</h3>
                                 </div>
                             </div>
                         </div>
