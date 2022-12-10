@@ -38,7 +38,13 @@
                                     <br>
                                     <h5 id="titleHead" class="text-light">Gender: {{ $attributesData->Character->Gender }}</h5>
                                     <br>
-                                    <h5 id="titleHead" class="text-light">Title: {{ $attributesData->Character->Title }}</h5>
+                                    <h5 id="titleHead" class="text-light">Title: 
+                                        @if (isset($attributesData->Character->Title))
+                                            {{ $attributesData->Character->Title }}
+                                        @else
+                                            <b>-</b>
+                                        @endif
+                                    </h5>
                                     <br>
                                     <h5 id="titleHead" class="text-light">Town: {{ $attributesData->Character->Town->Name }}</h5>
                                 </div>
